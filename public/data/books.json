@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "auterName": "Leanne Graham",
+      "publishedDate": "10/4/10",
+      "bookTitle": "Temp"
+    },
+    {
+      "id": 2,
+      "auterName": "Juvenile literature",
+      "publishedDate": "1/3/50",
+      "bookTitle": "This is Venice"
+    },
+    {
+      "id": 3,
+      "auterName": "Marijn Haverbeke",
+      "publishedDate": "9/8/12",
+      "bookTitle": "A Modern Introduction to Programming"
+    },
+    {
+      "id": 4,
+      "auterName": "Addy Osmani",
+      "publishedDate": "4/12/16",
+      "bookTitle": "A JavaScript and jQuery Developer's Guide"
+    }
+ ]
