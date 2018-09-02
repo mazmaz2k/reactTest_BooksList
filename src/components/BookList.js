@@ -3,6 +3,7 @@ import axios from 'axios';
 import { SModal } from './SModal';
 import { Book } from './Book';
 import { AddBook } from './AddBook';
+import { EditBook } from './EditBook';
 
 
 class BookList extends React.Component {
@@ -13,10 +14,14 @@ class BookList extends React.Component {
     this.state = {
       books: [],
       modal: false,
+      sub_modal:false,
       idx: 0,
     };
     this.toggle = this.toggle.bind(this);
+    this.sub_toggle = this.sub_toggle.bind(this);
     this.deleteFromList = this.deleteFromList.bind(this);
+    this.addNewBook = this.addNewBook.bind(this);
+    this.editBook = this.editBook.bind(this);
 
   }
 
@@ -26,9 +31,15 @@ class BookList extends React.Component {
       idx: i,
     });
   }
-  addBook() {
 
+  sub_toggle(bookTitle,auterName,publishedDate){
+    this.setState({
+      modal: !this.state.modal,
+      sub_modal: !this.state.sub_modal,
+      
+    });
   }
+  
   deleteFromList(idx) {
     let { books } = this.state;
     // console.log("1:----",books)
@@ -52,12 +63,24 @@ class BookList extends React.Component {
       });
   }
 
-  addNewBook() {
-    
+  addNewBook(book) {
+    const bookList = this.state.books;
+    bookList.push(book);
+    this.setState({books: bookList});
+  }
+
+  editBook(book){
+    console.log("Book: ",book)
+    const bookList = this.state.books;
+    bookList[this.state.idx]=book;
+    console.log("Before: ",bookList)
+    this.setState({books: bookList});
+    console.log("After: ",this.state.books)
+
   }
 
   render() {
-    console.log('All books ', this.state.books);
+    // console.log('All books ', this.state.books);
     const books = this.state.books;
     // var idx =0;
     let booksListBlock = '';
@@ -78,9 +101,11 @@ class BookList extends React.Component {
 
         <ul >
           <div>
-            {<AddBook bookList={this.state.books} />}
+            {<AddBook bookList={this.state.books} addNewBook={this.addNewBook}/>}
             {booksListBlock}
-            {this.state.modal && <SModal isOpen={this.state.modal} toggle={this.toggle} book={this.state.books[this.state.idx]} deleteItem={this.deleteFromList} idx={this.state.idx} />}
+            {this.state.modal && <SModal isOpen={this.state.modal} sub_toggle={this.sub_toggle} toggle={this.toggle} book={this.state.books[this.state.idx]} deleteItem={this.deleteFromList} idx={this.state.idx} />}
+            {!this.state.modal && this.state.sub_modal && <EditBook isOpen={this.state.sub_modal} toggle={this.sub_toggle} editBook={this.editBook} book={this.state.books[this.state.idx]}  />}
+
           </div>
         </ul>
       </div>

@@ -8,6 +8,7 @@
     "morgan": "^1.9.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.2",
+    "react-datetime": "^2.15.0",
     "react-dom": "^16.4.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.4.0-alpha.1",

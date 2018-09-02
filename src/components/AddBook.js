@@ -23,7 +23,7 @@ export class AddBook extends React.Component {
 
     }
 
-    validate(auterName,bookTitle,publishedDate){
+    validate(bookTitle, auterName,publishedDate){
         return({
             auterName: auterName.length === 0,
             bookTitle: bookTitle.length ===0,
@@ -61,11 +61,16 @@ export class AddBook extends React.Component {
         console.log(this.state.auterName);
         console.log(this.state.publishedDate);
         if(this.state.bookTitle!=='' && this.state.auterName!=='' && this.state.publishedDate!==''){
-            this.props.bookList.push({id: this.props.bookList.length, auterName:this.state.auterName,publishedDate:this.state.publishedDate,bookTitle:this.state.bookTitle})
-
+            const min = 1;
+            const max = 100000;
+            const rand =Math.floor(min + Math.random() * (max - min)) ;
+            // this.props.bookList.push({id: this.props.bookList.length, auterName:this.state.auterName,publishedDate:this.state.publishedDate,bookTitle:this.state.bookTitle});
+            this.props.addNewBook({id: rand, auterName:this.state.auterName,publishedDate:this.state.publishedDate,bookTitle:this.state.bookTitle});
+            this.toggle();
+            // this.props.bookList()
             // event.preventDefault();
-            console.log(this.props.bookList);
-
+            // console.log(this.props.bookList);
+            // event.onSubmit()
             // return;
         }
         event.preventDefault();
